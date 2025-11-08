@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Intangia - Business Management Platform</title>
+    
+    <!-- Optimized CSS -->
+    <link rel="stylesheet" href="style.css"/>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"/>
+    <link rel="manifest" href="/manifest.webmanifest"/>
+    
+    <!-- Voice modulation library -->
+    <script src="https://cdn.jsdelivr.net/npm/annyang@2.6.0/dist/annyang.min.js"></script>
+</head>
+<body class="font-body antialiased">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Intangia</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/website">Website</a></li>
+                        <li><a href="/contacts">Contacts</a></li>
+                        <li><a href="/invoices">Invoices</a></li>
+                        <li><a href="/studio">Studio</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button id="voice-control" class="voice-btn" title="Voice Control">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 15c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v7c0 1.66 1.34 3 3 3z"/>
+                            <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                    </button>
+                    <div class="user-profile">
+                        <img src="/avatar.png" alt="User Avatar"/>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Navigation</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="/dashboard" class="active">Dashboard</a></li>
+                        <li><a href="/website">Website Builder</a></li>
+                        <li><a href="/contacts">Contacts</a></li>
+                        <li><a href="/invoices">Invoices</a></li>
+                        <li><a href="/studio">Studio</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>AI Assistants</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="/ai/general">General Assistant</a></li>
+                        <li><a href="/ai/marketing">Marketing</a></li>
+                        <li><a href="/ai/finance">Finance</a></li>
+                        <li><a href="/ai/sales">Sales</a></li>
+                        <li><a href="/ai/research">Research</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Account</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="/kyc" id="kyc-link">KYC Verification</a></li>
+                        <li><a href="/wallet" id="wallet-link">Wallet & Banking</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Dashboard Content -->
+                <div class="dashboard">
+                    <div class="welcome-section">
+                        <h2>Welcome to Intangia</h2>
+                        <p>Your complete business management solution</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Website Builder</h3>
+                            <p>Create a professional website in minutes with AI</p>
+                            <a href="/website" class="btn-primary">Build Website</a>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>KYC Verification</h3>
+                            <p>Complete your identity verification to access all features</p>
+                            <button id="start-kyc" class="btn-primary">Start KYC</button>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>Wallet & Banking</h3>
+                            <p>Connect your bank account for seamless transactions</p>
+                            <button id="connect-bank" class="btn-primary">Connect Bank</button>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>Voice Control</h3>
+                            <p>Control the platform with voice commands</p>
+                            <button id="enable-voice" class="btn-primary">Enable Voice</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <p>Website "My Business" created</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                            <div class="activity-item">
+                                <p>Contact "John Doe" added</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                            <div class="activity-item">
+                                <p>Invoice #001 sent to client</p>
+                                <span class="activity-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- KYC Modal -->
+                <div id="kyc-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>KYC Verification</h2>
+                        <div class="kyc-steps">
+                            <div class="step active" data-step="1">
+                                <h4>Step 1: Personal Information</h4>
+                                <form id="personal-info-form">
+                                    <div class="form-group">
+                                        <label for="full-name">Full Name</label>
+                                        <input type="text" id="full-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dob">Date of Birth</label>
+                                        <input type="date" id="dob" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" required>
+                                    </div>
+                                    <button type="button" class="btn-primary next-step" data-next="2">Next</button>
+                                </form>
+                            </div>
+                            
+                            <div class="step" data-step="2">
+                                <h4>Step 2: Identity Verification</h4>
+                                <p>Upload a photo of your government-issued ID</p>
+                                <div class="upload-area" id="id-upload">
+                                    <p>Drag & drop your ID here or click to browse</p>
+                                    <input type="file" accept="image/*" id="id-file">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary prev-step" data-prev="1">Back</button>
+                                    <button type="button" class="btn-primary next-step" data-next="3">Next</button>
+                                </div>
+                            </div>
+                            
+                            <div class="step" data-step="3">
+                                <h4>Step 3: Selfie Verification</h4>
+                                <p>Take a selfie to verify your identity</p>
+                                <div class="camera-container">
+                                    <video id="camera-feed" autoplay></video>
+                                    <canvas id="photo-canvas" style="display:none;"></canvas>
+                                    <button id="capture-photo" class="btn-primary">Take Photo</button>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary prev-step" data-prev="2">Back</button>
+                                    <button type="button" class="btn-primary" id="submit-kyc">Submit Verification</button>
+                                </div>
+                            </div>
+                            
+                            <div class="step" data-step="4">
+                                <h4>Verification Submitted</h4>
+                                <p>Your KYC verification has been submitted for review. You will receive a notification once it's complete.</p>
+                                <button type="button" class="btn-primary" id="close-kyc">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bank Connection Modal -->
+                <div id="bank-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Connect Bank Account</h2>
+                        <div class="bank-options">
+                            <div class="bank-option">
+                                <h4>Instant Connection</h4>
+                                <p>Securely connect your bank account using Plaid</p>
+                                <button id="plaid-connect" class="btn-primary">Connect with Plaid</button>
+                            </div>
+                            
+                            <div class="bank-option">
+                                <h4>Manual Entry</h4>
+                                <p>Enter your bank account details manually</p>
+                                <form id="manual-bank-form">
+                                    <div class="form-group">
+                                        <label for="bank-name">Bank Name</label>
+                                        <input type="text" id="bank-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="account-holder">Account Holder Name</label>
+                                        <input type="text" id="account-holder" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="account-number">Account Number</label>
+                                        <input type="text" id="account-number" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="routing-number">Routing Number</label>
+                                        <input type="text" id="routing-number" required>
+                                    </div>
+                                    <button type="submit" class="btn-primary">Connect Account</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Voice Control Panel -->
+                <div id="voice-panel" class="voice-panel">
+                    <div class="voice-header">
+                        <h3>Voice Control</h3>
+                        <button id="close-voice" class="close-btn">&times;</button>
+                    </div>
+                    <div class="voice-status">
+                        <p id="voice-status-text">Click the microphone to start</p>
+                        <div class="voice-visualizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    <div class="voice-commands">
+                        <h4>Available Commands:</h4>
+                        <ul>
+                            <li>"Go to dashboard"</li>
+                            <li>"Create website"</li>
+                            <li>"Add contact"</li>
+                            <li>"Create invoice"</li>
+                            <li>"Open settings"</li>
+                        </ul>
+                    </div>
+                    <button id="voice-toggle" class="voice-toggle-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 15c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v7c0 1.66 1.34 3 3 3z"/>
+                            <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Optimized Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
